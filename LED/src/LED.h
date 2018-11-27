@@ -12,9 +12,9 @@
 
 void init_LEDs(void);
 
-void light_on(int LED);
-void light_off(int LED);
-void light_toggle(int LED);
+void light_on(uint8_t LED);
+void light_off(uint8_t LED);
+void light_toggle(uint8_t LED);
 
 
 

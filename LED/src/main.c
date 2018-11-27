@@ -4,6 +4,7 @@
 #include "stm32f0xx.h"
 #include "lcd_stm32f0.h"
 #include "LED.h"
+#include "PB.h"
 
 void main(void);
 
@@ -21,17 +22,20 @@ void main(void) {
 
 
   init_LEDs();
+  init_push_buttons();
   // set LEDs to outputs
-  int counter=1;
+  uint8_t counter=0;
   for(;;) {
     for(i=0; i < 65535; i++);
-    light_toggle(counter);
+    if(get_button_state(1)==0)
+    	light_toggle(counter);
     for(i=0; i < 65535; i++);
-    light_toggle(counter);
+    if(get_button_state(1)==0)
+    	light_toggle(counter);
     counter=counter+1;
 
-    if(counter>8)
-    	counter=1;
+    if(counter>7)
+    	counter=0;
   }
 }
 

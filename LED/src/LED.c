@@ -14,31 +14,31 @@ void init_LEDs(void)
 
 
 
-void light_on(int LED)
+void light_on(uint8_t LED)
 {
 	switch(LED){
-		case 1:
+		case 0:
 			GPIOB->ODR=GPIOB->ODR|0b1;
 			break;
-		case 2:
+		case 1:
 			GPIOB->ODR=GPIOB->ODR|0b10;
 			break;
-		case 3:
+		case 2:
 			GPIOB->ODR=GPIOB->ODR|0b100;
 			break;
-		case 4:
+		case 3:
 			GPIOB->ODR=GPIOB->ODR|0b1000;
 			break;
-		case 5:
+		case 4:
 			GPIOB->ODR=GPIOB->ODR|0b10000;
 			break;
-		case 6:
+		case 5:
 			GPIOB->ODR=GPIOB->ODR|0b100000;
 			break;
-		case 7:
+		case 6:
 			GPIOB->ODR=GPIOB->ODR|0b1000000;
 			break;
-		case 8:
+		case 7:
 			GPIOB->ODR=GPIOB->ODR|0b10000000;
 			break;
 		default:
@@ -47,31 +47,31 @@ void light_on(int LED)
 
 }
 
-void light_off(int LED)
+void light_off(uint8_t LED)
 {
 	switch(LED){
-		case 1:
+		case 0:
 			GPIOB->ODR=GPIOB->ODR&0b11111110;
 			break;
-		case 2:
+		case 1:
 			GPIOB->ODR=GPIOB->ODR&0b11111101;
 			break;
-		case 3:
+		case 2:
 			GPIOB->ODR=GPIOB->ODR&0b11111011;
 			break;
-		case 4:
+		case 3:
 			GPIOB->ODR=GPIOB->ODR&0b11110111;
 			break;
-		case 5:
+		case 4:
 			GPIOB->ODR=GPIOB->ODR&0b11101111;
 			break;
-		case 6:
+		case 5:
 			GPIOB->ODR=GPIOB->ODR&0b11011111;
 			break;
-		case 7:
+		case 6:
 			GPIOB->ODR=GPIOB->ODR&0b10111111;
 			break;
-		case 8:
+		case 7:
 			GPIOB->ODR=GPIOB->ODR&0b01111111;
 			break;
 		default:
@@ -80,31 +80,31 @@ void light_off(int LED)
 	}
 }
 
-void light_toggle(int LED)
+void light_toggle(uint8_t LED)
 {
 	switch(LED){
-			case 1:
+			case 0:
 				GPIOB->ODR=GPIOB->ODR ^ (1 << 0);
 				break;
-			case 2:
+			case 1:
 				GPIOB->ODR=GPIOB->ODR ^ (1 << 1);
 				break;
-			case 3:
+			case 2:
 				GPIOB->ODR=GPIOB->ODR ^ (1 << 2);
 				break;
-			case 4:
+			case 3:
 				GPIOB->ODR=GPIOB->ODR ^ (1 << 3);
 				break;
-			case 5:
+			case 4:
 				GPIOB->ODR=GPIOB->ODR ^ (1 << 4);
 				break;
-			case 6:
+			case 5:
 				GPIOB->ODR=GPIOB->ODR ^ (1 << 5);
 				break;
-			case 7:
+			case 6:
 				GPIOB->ODR=GPIOB->ODR ^ (1 << 6);
 				break;
-			case 8:
+			case 7:
 				GPIOB->ODR=GPIOB->ODR ^ (1 << 7);
 				break;
 			default:
