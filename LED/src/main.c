@@ -6,8 +6,21 @@
 #include "LED.h"
 #include "PB.h"
 
-void main(void);
+#define red 0
+#define white 2
+#define blue 1
 
+#define mode_1 0
+#define mode_2 1
+#define mode_3 2
+#define mode_4 3
+
+uint8_t mode=0;
+uint32_t i = 0;
+
+void main(void);
+uint8_t get_mode(uint8_t);
+void strobe_delay(void);
 
 extern void lcd_init (void);
 
@@ -24,19 +37,71 @@ void main(void) {
   init_LEDs();
   init_push_buttons();
   // set LEDs to outputs
-  uint8_t counter=0;
-  for(;;) {
-    for(i=0; i < 65535; i++);
-    if(get_button_state(1)==0)
-    	light_toggle(counter);
-    for(i=0; i < 65535; i++);
-    if(get_button_state(1)==0)
-    	light_toggle(counter);
-    counter=counter+1;
+  for(;;)
+  {
 
-    if(counter>7)
-    	counter=0;
+	  mode=get_mode(mode);
+	  switch(mode)
+	  {
+	  case mode_1:
+		  light_on(white);
+		  light_off(red);
+		  light_off(blue);
+		  break;
+	  case mode_2:
+		  light_on(white);
+		  light_on(red);
+		  light_on(blue);
+		  break;
+	  case mode_3:
+		  light_on(white);
+		  light_on(red);
+		  light_on(blue);
+		  i=0;
+		  strobe_delay();
+		  light_off(white);
+		  light_off(red);
+		  light_off(blue);
+		  strobe_delay();
+		  break;
+	  case mode_4:
+		  break;
+	  default:
+		  break;
+	  }
+
+
+
+
+
+
   }
 }
 
+uint8_t get_mode(uint8_t current_mode)
+{
+	uint8_t new_mode=current_mode;
+	if(get_button_state(mode_1)==1)
+	{
+		new_mode=mode_1;
+	}
+	else if(get_button_state(mode_2)==1)
+	{
+		new_mode=mode_2;
+	}
+	else if(get_button_state(mode_3)==1)
+	{
+		new_mode=mode_3;
+	}
+	else if(get_button_state(mode_4)==1)
+	{
+		new_mode=mode_4;
+	}
 
+	return new_mode;
+}
+void strobe_delay()
+{
+	int i=0;
+	for(; i < 65535; i++);
+}
