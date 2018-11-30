@@ -5,6 +5,7 @@
 #include "lcd_stm32f0.h"
 #include "LED.h"
 #include "PB.h"
+#include "ADC.h"
 
 #define red 0
 #define white 2
@@ -36,6 +37,7 @@ void main(void) {
 
   init_LEDs();
   init_push_buttons();
+  init_ADC();
   // set LEDs to outputs
   for(;;)
   {
@@ -102,6 +104,7 @@ uint8_t get_mode(uint8_t current_mode)
 }
 void strobe_delay()
 {
+	uint32_t val=65535*adc_read()/255.0+9000;
 	int i=0;
-	for(; i < 65535; i++);
+	for(; i < val; i++);
 }
