@@ -1,3 +1,4 @@
-main.c:29:6:main	16	static
-main.c:83:9:get_mode	24	static
-main.c:105:6:strobe_delay	24	static
+main.c:31:6:main	16	static
+main.c:97:9:get_mode	24	static
+main.c:119:6:strobe_delay	24	static
+main.c:125:6:delay	16	static

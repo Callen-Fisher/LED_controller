@@ -10,6 +10,7 @@
 #define red 0
 #define white 2
 #define blue 1
+#define beer 3
 
 #define mode_1 0
 #define mode_2 1
@@ -22,6 +23,7 @@ uint32_t i = 0;
 void main(void);
 uint8_t get_mode(uint8_t);
 void strobe_delay(void);
+void delay(void);
 
 extern void lcd_init (void);
 
@@ -41,6 +43,15 @@ void main(void) {
   // set LEDs to outputs
   for(;;)
   {
+	  i=i+1;
+	  delay();
+	  if(i>200)
+	  {
+		  light_toggle(beer);
+		  i=0;
+	  }
+
+
 
 	  mode=get_mode(mode);
 	  switch(mode)
@@ -67,6 +78,9 @@ void main(void) {
 		  strobe_delay();
 		  break;
 	  case mode_4:
+		  light_off(white);
+		  light_off(red);
+		  light_off(blue);
 		  break;
 	  default:
 		  break;
@@ -105,6 +119,12 @@ uint8_t get_mode(uint8_t current_mode)
 void strobe_delay()
 {
 	uint32_t val=65535*adc_read()/255.0+9000;
+	int i=0;
+	for(; i < val; i++);
+}
+void delay()
+{
+	uint32_t val=10000;
 	int i=0;
 	for(; i < val; i++);
 }
